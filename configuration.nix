@@ -1,10 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -85,19 +87,23 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  security.sudo.extraRules = [ {
-    users = [ "marcospb19" ];
-    commands = [ {
-       command = "ALL" ;
-       options= [ "NOPASSWD" ]; # "SETENV" # Adding the following could be a good idea
-    }];
-  }];
+  security.sudo.extraRules = [
+    {
+      users = ["marcospb19"];
+      commands = [
+        {
+          command = "ALL";
+          options = ["NOPASSWD"]; # "SETENV" # Adding the following could be a good idea
+        }
+      ];
+    }
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marcospb19 = {
     isNormalUser = true;
     description = "João Marcos";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
     ];
@@ -105,7 +111,7 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [zsh];
 
   programs.zsh = {
     enable = true;
@@ -189,7 +195,6 @@
     victor-mono
   ];
 
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -199,7 +204,7 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
   environment.variables = {
-    OPENSSL_DEV=pkgs.openssl.dev;
+    OPENSSL_DEV = pkgs.openssl.dev;
     EDITOR = "nvim";
     BROWSER = "google-chrome-stable";
   };
@@ -208,12 +213,10 @@
     "openssl-1.1.1u"
   ];
 }
-
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 # # Configure network proxy if necessary
 # networking.proxy.default = "http://user:password@proxy:port/";
 # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
 # Some programs need SUID wrappers, can be configured further or are
 # started in user sessions.
 # programs.mtr.enable = true;
@@ -221,19 +224,16 @@
 #   enable = true;
 #   enableSSHSupport = true;
 # };
-
 # Enable the OpenSSH daemon.
 # services.openssh.enable = true;
-
 # Open ports in the firewall.
 # networking.firewall.allowedTCPPorts = [ ... ];
 # networking.firewall.allowedUDPPorts = [ ... ];
 # Or disable the firewall altogether.
 # networking.firewall.enable = false;
-
 # If you want to use JACK applications, uncomment this
 #services.pipewire.jack.enable = true;
-
 # use the example session manager (no others are packaged yet so this is enabled by default,
 # no need to redefine it in your config for now)
 #services.pipewire.media-session.enable = true;
+
