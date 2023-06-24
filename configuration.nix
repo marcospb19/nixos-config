@@ -113,15 +113,23 @@
 
   environment.shells = with pkgs; [zsh];
 
-  programs.zsh = {
-    enable = true;
-    # My aliases are actually inside of the .aliases file
-    shellAliases = {
-      update = "sudo nixos-rebuild switch";
-    };
-    ohMyZsh = {
+  programs = {
+    steam.enable = true;
+
+    zsh = {
       enable = true;
-      theme = "robbyrussell";
+      # My aliases are actually inside of the .aliases file
+      shellAliases = {
+        update = "sudo nixos-rebuild switch";
+      };
+      ohMyZsh = {
+        enable = true;
+        theme = "robbyrussell";
+      };
+      syntaxHighlighting.highlighters = ["main" "brackets"];
+      syntaxHighlighting.enable = true;
+      autosuggestions.enable = true;
+      histSize = 50000;
     };
   };
 
@@ -180,10 +188,6 @@
     discord
     delta
   ];
-
-  programs = {
-    steam.enable = true;
-  };
 
   fonts.fonts = with pkgs; [
     noto-fonts
