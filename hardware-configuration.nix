@@ -4,26 +4,25 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
+  boot.initrd.luks.devices."luks-fdb6c9d8-111b-48f9-b2be-e82c8fe0b8eb".device = "/dev/disk/by-uuid/fdb6c9d8-111b-48f9-b2be-e82c8fe0b8eb";
+
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a0225d83-1768-444b-b9ae-50f5b834eb15";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/a0225d83-1768-444b-b9ae-50f5b834eb15";
       fsType = "ext4";
     };
-
-  boot.initrd.luks.devices."luks-fdb6c9d8-111b-48f9-b2be-e82c8fe0b8eb".device = "/dev/disk/by-uuid/fdb6c9d8-111b-48f9-b2be-e82c8fe0b8eb";
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/CA60-AB1E";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/CA60-AB1E";
       fsType = "vfat";
     };
+  };
 
   swapDevices = [ ];
 
