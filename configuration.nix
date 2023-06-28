@@ -141,8 +141,10 @@
     openssl
     pkgconfig
     pkg-config
+    valgrind
     vscode
     mold
+    blueberry
     dbus
     signal-desktop
     flameshot
@@ -175,6 +177,8 @@
     hexyl
     stow
     gcc
+    networkmanagerapplet
+    bottom
     spotify
     clang
     git
@@ -187,6 +191,7 @@
     pavucontrol
     discord
     delta
+    evcxr
   ];
 
   fonts.fonts = with pkgs; [
