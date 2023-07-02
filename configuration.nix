@@ -71,6 +71,7 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
+  hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -212,6 +213,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
+  environment.localBinInPath = true;
   environment.variables = {
     OPENSSL_DEV = pkgs.openssl.dev;
     EDITOR = "nvim";
