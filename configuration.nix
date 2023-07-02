@@ -44,6 +44,8 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
+    videoDrivers = [ "amdgpu" ];
+
     # i3 (and a fallback gnome, why not)
     windowManager.i3.enable = true;
     desktopManager.gnome.enable = true;
