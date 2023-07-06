@@ -50,7 +50,7 @@
     windowManager.i3.enable = true;
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
-    displayManager.defaultSession = "none+i3";
+    # displayManager.defaultSession = "none+i3";
 
     enable = true;
     layout = "br";
